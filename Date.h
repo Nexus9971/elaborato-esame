@@ -1,12 +1,10 @@
 //
 // Created by Mario De Simone on 2019-06-12.
 //
-#include <string>
-#include <utility>
-#include <map>
-
 #ifndef PROGETTOPROGRAMMAZIONE_DATE_H
 #define PROGETTOPROGRAMMAZIONE_DATE_H
+
+#include <string>
 
 class Date{
 

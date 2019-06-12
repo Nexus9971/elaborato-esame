@@ -3,4 +3,4 @@ project(ProgettoProgrammazione)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(ProgettoProgrammazione main.cpp Date.h Date.cpp)
+add_executable(ProgettoProgrammazione main.cpp Date.h Date.cpp Account.cpp Account.h)

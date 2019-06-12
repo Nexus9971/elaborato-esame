@@ -4,8 +4,10 @@
 
 #include "Date.h"
 
-Date::Date(int d, int m, int y): day(d), year(y), month(m){
-
+Date::Date(int d, int m, int y){
+    setDay(d);
+    setMonth(m);
+    setYear(y);
 }
 
 bool Date::setDay(int day){
