@@ -14,19 +14,19 @@ private:
 public:
     Date(int d = 1, int m = 1, int y = 2019);
 
-    int getDay() const {
+    const int getDay() const {
         return day;
     }
 
     bool setDay(int day);
 
-    int getMonth() const {
+    const int getMonth() const {
         return month;
     }
 
     bool setMonth(int month);
 
-    int getYear() const {
+    const int getYear() const {
         return year;
     }
 

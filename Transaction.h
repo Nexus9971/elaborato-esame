@@ -12,20 +12,42 @@
 
 class Account;
 
+enum Category : char{
+    car = 'C';
+    food = 'F';
+    home = 'H';
+    entertainment = 'E';
+    school = 'S';
+    tax = 'T';
+    other = 'O';
+};
+
 class Transaction{
 private:
     Date date_transaction;
     int amount;
     std::pair<std::string, std::string> payer;
     std::pair<std::string, std::string> beneficiary;
+    Category type;
 public:
-    Transaction(Date d, int a, Account& p, Account& b);
+    Transaction(Date d, int a, Category& c, Account& p, Account& b);
     const Date& getDateTransaction() const {
         return date_transaction;
     }
 
-    int getAmount() const {
+    const int getAmount() const {
         return amount;
+    }
+    const std::pair<std::string, std::string>& getPayer() const {
+        return payer;
+    }
+
+    const std::pair<std::string, std::string>& getBeneficiary() const {
+        return beneficiary;
+    }
+
+    Category getType() const {
+        return type;
     }
 };
 

@@ -22,14 +22,10 @@ private:
 
 public:
     Account(std::string n, std::string s, Date c = Date(), int m = 0);
-    const std::string& getName() const {
-        return person.second;
+    const std::pair<std::string, std::string>& getPerson() const{
+        return person;
     }
-
-    const std::string& getSurname() const {
-        return person.first;
-    }
-    int getMoney() const {
+    const int getMoney() const {
         return money;
     }
 

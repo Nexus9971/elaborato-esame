@@ -4,11 +4,9 @@
 
 #include "Transaction.h"
 
-Transaction::Transaction(Date d, int a, Account& p, Account& b): date_transaction(d), amount(a){
-    payer.first = p.getSurname();
-    payer.second = p.getName();
-    beneficiary.first = b.getSurname();
-    beneficiary.second = b.getName();
+Transaction::Transaction(Date d, int a, Category& c, Account& p, Account& b): date_transaction(d), amount(a), type(c){
+    payer = p.getPerson();
+    beneficiary = b.getPerson();
     p.removeMoney(a);
     b.addMoney(a);
 };
