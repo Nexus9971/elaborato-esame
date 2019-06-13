@@ -4,8 +4,6 @@
 #ifndef PROGETTOPROGRAMMAZIONE_DATE_H
 #define PROGETTOPROGRAMMAZIONE_DATE_H
 
-#include <string>
-
 class Date{
 
 private:

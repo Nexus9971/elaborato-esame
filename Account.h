@@ -5,25 +5,29 @@
 #ifndef PROGETTOPROGRAMMAZIONE_ACCOUNT_H
 #define PROGETTOPROGRAMMAZIONE_ACCOUNT_H
 
-#include "string"
 #include "Date.h"
+#include "Transaction.h"
+#include <string>
+#include <list>
+#include <utility>
+
+class Transaction;//Forward Declaration to avoid inclusion problem
 
 class Account {
 private:
-    std::string name;
-    std::string surname;
+    std::pair<std::string, std::string> person;
     Date creation;
     int money;
-
+    std::list<unique_ptr<Transaction>> transactions;
 
 public:
-    Account(std::string n = "", std::string s = "", Date c = Date(), int m = 0);
+    Account(std::string n, std::string s, Date c = Date(), int m = 0);
     const std::string& getName() const {
-        return name;
+        return person.second;
     }
 
     const std::string& getSurname() const {
-        return surname;
+        return person.first;
     }
     int getMoney() const {
         return money;
@@ -31,6 +35,7 @@ public:
 
     void addMoney(int money);
     void removeMoney(int money);
+    void insertTransaction(Transaction& t);
 };
 
 
