@@ -24,7 +24,7 @@ enum class Category{
 
 class Transaction{
 public:
-    Transaction(const Date& d = Date(), int a, const Category& c = Category::other, Account& p, Account& b);
+    Transaction(Account& p, Account& b, const Date& d = Date(), int a = 0, const Category& c = Category::other);
     const Date& getDateTransaction() const {
         return date_transaction;
     }

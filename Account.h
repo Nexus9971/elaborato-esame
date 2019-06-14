@@ -32,7 +32,7 @@ private:
     std::pair<std::string, std::string> person;
     Date creation;
     int money;
-    std::list<unique_ptr<Transaction>> transactions;
+    std::list<std::unique_ptr<Transaction>> transactions;
 };
 
 
