@@ -4,7 +4,7 @@
 
 #include "Transaction.h"
 
-Transaction::Transaction(Date d, int a, Category& c, Account& p, Account& b): date_transaction(d), amount(a), type(c){
+Transaction::Transaction(const Date& d, int a, const Category& c, Account& p, Account& b): date_transaction(d), amount(a), type(c){
     payer = p.getPerson();
     beneficiary = b.getPerson();
     p.removeMoney(a);

@@ -12,25 +12,19 @@
 
 class Account;
 
-enum Category : char{
-    car = 'C';
-    food = 'F';
-    home = 'H';
-    entertainment = 'E';
-    school = 'S';
-    tax = 'T';
-    other = 'O';
+enum class Category{
+    car,
+    food,
+    home,
+    entertainment,
+    school,
+    tax,
+    other
 };
 
 class Transaction{
-private:
-    Date date_transaction;
-    int amount;
-    std::pair<std::string, std::string> payer;
-    std::pair<std::string, std::string> beneficiary;
-    Category type;
 public:
-    Transaction(Date d, int a, Category& c, Account& p, Account& b);
+    Transaction(const Date& d = Date(), int a, const Category& c = Category::other, Account& p, Account& b);
     const Date& getDateTransaction() const {
         return date_transaction;
     }
@@ -38,17 +32,24 @@ public:
     const int getAmount() const {
         return amount;
     }
-    const std::pair<std::string, std::string>& getPayer() const {
-        return payer;
+
+    const std::string& getPayer() const {
+        return payer.first + " " + payer.second;
     }
 
-    const std::pair<std::string, std::string>& getBeneficiary() const {
-        return beneficiary;
+    const std::string& getBeneficiary() const {
+        return beneficiary.first + " " + beneficiary.second;
     }
 
     Category getType() const {
         return type;
     }
+private:
+    Date date_transaction;
+    int amount;
+    std::pair<std::string, std::string> payer;
+    std::pair<std::string, std::string> beneficiary;
+    Category type;
 };
 
 #endif //PROGETTOPROGRAMMAZIONE_TRANSACTION_H

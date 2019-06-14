@@ -4,7 +4,7 @@
 
 #include "Account.h"
 
-Account::Account(std::string n, std::string s, Date c, int m) : creation(c){
+Account::Account(const std::string& n, const std::string& s, const Date& c, int m) : creation(c){
     person.second = n;
     person.first = s;
     if(m >= 0){
@@ -24,4 +24,13 @@ void Account::removeMoney(int money) {
 
 void Account::insertTransaction(Transaction& t) {
     Account::transactions.push_back(std::unique_ptr<Transaction>(&t));
+    std::ofstream fileTransaction;
+    std::string path = "../ListTransactions/" + Account::person.first +  Account::person.second + ".txt";
+    fileTransaction.open(path, std::ofstream::app);
+    std::stringstream stream;
+    stream << "Transaction from " << t.getPayer() << " to " << t.getBeneficiary() << " of " << t.getAmount()
+                                << "€ " << "in " << t.getDateTransaction().getDay() << "/" << t.getDateTransaction().getMonth() << "/"
+                                << t.getDateTransaction().getYear() << "\n";
+    fileTransaction << stream.str();
+    fileTransaction.close();
 }

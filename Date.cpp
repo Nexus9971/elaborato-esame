@@ -5,47 +5,29 @@
 #include "Date.h"
 
 Date::Date(int d, int m, int y){
-    setDay(d);
-    setMonth(m);
-    setYear(y);
-}
-
-bool Date::setDay(int day){
-    bool result = true;
-    if(day <= 0 || day >= 32){
-        result = false;
-    }else if((month == 4 || month == 6 || month == 9 || month == 11) && day >= 31){
-        result = false;
-    }else if((month == 1 || month == 3 || month == 5 || month == 7 || month == 8
-              || month == 10 || month == 12) && day >= 32){
-        result = false;
-    }else if((month == 2 && (year%4) == 0) && day >= 30){
-        result = false;
-    }else if(month == 2 && day >= 29){
-        result = false;
+    if(y >= 2000){
+        Date::year = y;
+    }else{
+        Date::year = 2019;
     }
-    if(result){
-        Date::day = day;
-    }
-    return result;
-}
-
-bool Date::setMonth(int month) {
-    bool result = true;
-    if(month >= 1 && month <=12){
+    if(m >= 1 && m <=12){
         Date::month = month;
     }else{
-        result = false;
+        Date::month = 1;
     }
-    return result;
-}
-
-bool Date::setYear(int year) {
-    bool result = true;
-    if(year >= 2000){
-        Date::year = year;
+    if(d <= 0 || d >= 32){
+        Date::day = 1;
+    }else if((Date::month == 4 || Date::month == 6 || Date::month == 9 || Date::month == 11) && d >= 31){
+        Date::day = 1;
+    }else if((Date::month == 1 || Date::month == 3 || Date::month == 5 || Date::month == 7 || Date::month == 8
+              || Date::month == 10 || Date::month == 12) && d >= 32){
+        Date::day = 1;
+    }else if((Date::month == 2 && (Date::year%4) == 0) && d >= 30){
+        Date::day = 1;
+    }else if(Date::month == 2 && d >= 29){
+        Date::day = 1;
     }else{
-        result = false;
+        Date::day = day;
     }
-    return result;
+
 }

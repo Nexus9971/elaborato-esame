@@ -10,18 +10,14 @@
 #include <string>
 #include <list>
 #include <utility>
+#include <fstream>
+#include <sstream>
 
 class Transaction;//Forward Declaration to avoid inclusion problem
 
 class Account {
-private:
-    std::pair<std::string, std::string> person;
-    Date creation;
-    int money;
-    std::list<unique_ptr<Transaction>> transactions;
-
 public:
-    Account(std::string n, std::string s, Date c = Date(), int m = 0);
+    Account(const std::string& n, const std::string& s, const Date& c = Date(), int m = 0);
     const std::pair<std::string, std::string>& getPerson() const{
         return person;
     }
@@ -32,6 +28,11 @@ public:
     void addMoney(int money);
     void removeMoney(int money);
     void insertTransaction(Transaction& t);
+private:
+    std::pair<std::string, std::string> person;
+    Date creation;
+    int money;
+    std::list<unique_ptr<Transaction>> transactions;
 };
 
 
