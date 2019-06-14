@@ -21,8 +21,17 @@ public:
     const std::pair<std::string, std::string>& getPerson() const{
         return person;
     }
+
     const int getMoney() const {
         return money;
+    }
+
+    const Date& getCreation() const {
+        return creation;
+    }
+
+    const std::list<std::unique_ptr<Transaction> >& getTransactions() const {
+        return transactions;
     }
 
     void addMoney(int money);
@@ -32,7 +41,7 @@ private:
     std::pair<std::string, std::string> person;
     Date creation;
     int money;
-    std::list<std::unique_ptr<Transaction>> transactions;
+    std::list<std::unique_ptr<Transaction> > transactions;
 };
 
 

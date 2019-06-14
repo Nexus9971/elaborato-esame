@@ -19,6 +19,8 @@ public:
     const int getYear() const {
         return year;
     }
+
+    bool operator==(const Date& d) const;
 private:
     int day;
     int month;

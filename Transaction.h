@@ -44,6 +44,8 @@ public:
     Category getType() const {
         return type;
     }
+
+    bool operator==(const Transaction& t) const;
 private:
     Date date_transaction;
     int amount;

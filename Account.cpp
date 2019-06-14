@@ -23,7 +23,7 @@ void Account::removeMoney(int money) {
 }
 
 void Account::insertTransaction(Transaction& t) {
-    Account::transactions.push_back(std::unique_ptr<Transaction>(&t));
+    Account::transactions.push_back(std::unique_ptr<Transaction>(new Transaction(t)));
     std::ofstream fileTransaction;
     std::string path = "../ListTransactions/" + Account::person.first +  Account::person.second + ".txt";
     fileTransaction.open(path, std::ofstream::app);

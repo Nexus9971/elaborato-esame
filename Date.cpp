@@ -31,3 +31,11 @@ Date::Date(int d, int m, int y){
     }
 
 }
+
+bool Date::operator==(const Date &d) const{
+    bool result = false;
+    if(Date::day == d.day && Date::month == d.month && Date::year == d.year){
+        result = true;
+    }
+    return result;
+}
