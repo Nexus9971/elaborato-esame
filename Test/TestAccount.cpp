@@ -37,7 +37,7 @@ TEST(Account, TestaddMoney){
 
 TEST(Account, TestremoveMoney){
     Account a("Mario", "De Simone");
-    a.addMoney(10);
+    a.removeMoney(10);
     ASSERT_EQ(a.getMoney(), -10);
 }
 
@@ -48,7 +48,6 @@ TEST(Account, TestinsertTransaction){
     Transaction t(first, second, d, 4);
     first.insertTransaction(t);
     second.insertTransaction(t);
-    std::unique_ptr<Transaction> eq(new Transaction(t));
-    ASSERT_EQ(first.getTransactions().back(), eq);
-    ASSERT_EQ(second.getTransactions().back(), eq);
+    ASSERT_EQ(*first.getTransactions().back(), t);
+    ASSERT_EQ(*second.getTransactions().back(), t);
 }

@@ -33,15 +33,17 @@ public:
         return amount;
     }
 
-    const std::string& getPayer() const {
-        return payer.first + " " + payer.second;
+    const std::string getPayer() const {
+        std::string result = payer.first + " " + payer.second;
+        return result;
     }
 
-    const std::string& getBeneficiary() const {
-        return beneficiary.first + " " + beneficiary.second;
+    const std::string getBeneficiary() const {
+        std::string result = beneficiary.first + " " + beneficiary.second;
+        return result;
     }
 
-    Category getType() const {
+    const Category& getType() const {
         return type;
     }
 

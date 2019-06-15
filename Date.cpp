@@ -11,7 +11,7 @@ Date::Date(int d, int m, int y){
         Date::year = 2019;
     }
     if(m >= 1 && m <=12){
-        Date::month = month;
+        Date::month = m;
     }else{
         Date::month = 1;
     }
@@ -27,7 +27,7 @@ Date::Date(int d, int m, int y){
     }else if(Date::month == 2 && d >= 29){
         Date::day = 1;
     }else{
-        Date::day = day;
+        Date::day = d;
     }
 
 }

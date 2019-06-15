@@ -30,6 +30,14 @@ TEST(Transaction, ConstructorWrongParameters){
     ASSERT_EQ(t.getAmount(), 0);
     ASSERT_EQ(t.getDateTransaction(), d);
     ASSERT_EQ(t.getType(), Category::other);
-    ASSERT_EQ(t.getBeneficiary(), "Napoleone Bonaparte");
-    ASSERT_EQ(t.getPayer(), "Mario De Simone");
+    ASSERT_EQ(t.getBeneficiary(), "Bonaparte Napoleone");
+    ASSERT_EQ(t.getPayer(), "De Simone Mario");
+}
+
+TEST(Transaction, TestEqualityOperator){
+    Account first("Mario", "De Simone", Date(), 10);
+    Account second("Napoleone", "Bonaparte", Date(), 5);
+    Transaction t(first, second, Date(), -1);
+    Transaction u(first, second, Date(), 0);
+    ASSERT_EQ(t, u);
 }
