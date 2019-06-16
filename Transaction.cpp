@@ -18,8 +18,8 @@ Transaction::Transaction(Account& p, Account& b, const Date& d, int a, const Cat
 
 bool Transaction::operator==(const Transaction& t) const{
     bool result = false;
-    if(Transaction::date_transaction == t.date_transaction && Transaction::beneficiary == t.beneficiary &&
-       Transaction::payer == t.payer && Transaction::amount == t.amount && Transaction::type == t.type){
+    if(Transaction::date_transaction == t.getDateTransaction() && Transaction::getBeneficiary() == t.getBeneficiary() &&
+       Transaction::getPayer() == t.getPayer() && Transaction::amount == t.getAmount() && Transaction::type == t.getType()){
         result = true;
     }
     return result;

@@ -34,7 +34,7 @@ Date::Date(int d, int m, int y){
 
 bool Date::operator==(const Date &d) const{
     bool result = false;
-    if(Date::day == d.day && Date::month == d.month && Date::year == d.year){
+    if(Date::day == d.getDay() && Date::month == d.getMonth() && Date::year == d.getYear()){
         result = true;
     }
     return result;
