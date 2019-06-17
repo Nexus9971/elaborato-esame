@@ -4,32 +4,48 @@
 
 #include "Date.h"
 
-Date::Date(int d, int m, int y){
-    if(y >= 2000){
-        Date::year = y;
+Date::Date(int d, Months m, int y) throw(std::out_of_range){
+    month = m;
+    if (y <= 0){
+        throw std::out_of_range("Date Error");
     }else{
-        Date::year = 2019;
+        year = y;
     }
-    if(m >= 1 && m <=12){
-        Date::month = m;
+    int max = getMaxDay();
+    if(d <= 0 || d > max){
+        throw std::out_of_range("Date Error");
     }else{
-        Date::month = 1;
+        day = d;
     }
-    if(d <= 0 || d >= 32){
-        Date::day = 1;
-    }else if((Date::month == 4 || Date::month == 6 || Date::month == 9 || Date::month == 11) && d >= 31){
-        Date::day = 1;
-    }else if((Date::month == 1 || Date::month == 3 || Date::month == 5 || Date::month == 7 || Date::month == 8
-              || Date::month == 10 || Date::month == 12) && d >= 32){
-        Date::day = 1;
-    }else if((Date::month == 2 && (Date::year%4) == 0) && d >= 30){
-        Date::day = 1;
-    }else if(Date::month == 2 && d >= 29){
-        Date::day = 1;
-    }else{
-        Date::day = d;
-    }
+}
 
+const int Date::getMaxDay() const{
+    int max;
+    switch(month){
+        case Months::April:
+        case Months::June:
+        case Months::September:
+        case Months::November:
+            max = 30;
+            break;
+        case Months::February: {
+            if ((year % 4) != 0) {
+                max = 28;
+            } else if ((year % 100) != 4) {
+                max = 29;
+            } else if ((year % 400) != 0) {
+                max = 28;
+            } else {
+                max = 29;
+            }
+            break;
+        }
+        default: {
+            max = 31;
+            break;
+        }
+    }
+    return max;
 }
 
 bool Date::operator==(const Date &d) const{
@@ -38,4 +54,25 @@ bool Date::operator==(const Date &d) const{
         result = true;
     }
     return result;
+}
+
+const std::string Date::dateToString() const{
+    std::string m;
+    switch(month){
+        case Months::January:{m = "January"; break;}
+        case Months::February:{m = "February"; break;}
+        case Months::March:{m = "March"; break;}
+        case Months::April:{m = "April"; break;}
+        case Months::May:{m = "May"; break;}
+        case Months::June:{m = "June"; break;}
+        case Months::July:{m = "July"; break;}
+        case Months::August:{m = "August"; break;}
+        case Months::September:{m = "September"; break;}
+        case Months::October:{m = "October"; break;}
+        case Months::November:{m = "November"; break;}
+        case Months::December:{m = "December"; break;}
+    }
+    std::stringstream stream;
+    stream << day << " " << m << " " << year;
+    return stream.str();
 }

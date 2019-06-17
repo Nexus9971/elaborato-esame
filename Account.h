@@ -12,35 +12,41 @@
 #include <utility>
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 
 class Transaction;//Forward Declaration to avoid inclusion problem
 
 class Account {
 public:
-    Account(const std::string& n, const std::string& s, const Date& c = Date(), int m = 0);
-    const std::pair<std::string, std::string>& getPerson() const{
-        return person;
+    Account(const std::string& n, const std::string& s, const std::string& i, const Date& c, double m) throw(std::out_of_range);
+   const std::pair<std::string, std::string>& getPerson(){
+       return person;
+   }
+
+    const std::string& getId() const {
+        return id;
     }
 
-    const int getMoney() const {
+    const double getMoney() const {
         return money;
     }
 
     const Date& getCreation() const {
-        return creation;
+        return *creation;
     }
 
     const std::list<std::unique_ptr<Transaction> >& getTransactions() const {
         return transactions;
     }
 
-    void addMoney(int money);
-    void removeMoney(int money);
+    void addMoney(double money);
+    void removeMoney(double money);
     void insertTransaction(Transaction& t);
 private:
     std::pair<std::string, std::string> person;
-    Date creation;
-    int money;
+    std::string id;
+    std::unique_ptr<Date> creation;
+    double money;
     std::list<std::unique_ptr<Transaction> > transactions;
 };
 

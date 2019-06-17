@@ -7,6 +7,7 @@
 
 #include "Date.h"
 #include "Account.h"
+#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -24,12 +25,12 @@ enum class Category{
 
 class Transaction{
 public:
-    Transaction(Account& p, Account& b, const Date& d = Date(), int a = 0, const Category& c = Category::other);
+    Transaction(Account& p, Account& b, const std::string& i, const Date& d, double a, const Category& c = Category::other) throw(std::out_of_range);
     const Date& getDateTransaction() const {
-        return date_transaction;
+        return *date_transaction;
     }
 
-    const int getAmount() const {
+    const double getAmount() const {
         return amount;
     }
 
@@ -47,10 +48,15 @@ public:
         return type;
     }
 
+    const std::string& getId() const {
+        return id;
+    }
+
     bool operator==(const Transaction& t) const;
 private:
-    Date date_transaction;
-    int amount;
+    std::unique_ptr<Date> date_transaction;
+    std::string id;
+    double amount;
     std::pair<std::string, std::string> payer;
     std::pair<std::string, std::string> beneficiary;
     Category type;

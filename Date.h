@@ -4,15 +4,34 @@
 #ifndef PROGETTOPROGRAMMAZIONE_DATE_H
 #define PROGETTOPROGRAMMAZIONE_DATE_H
 
+#include "stdexcept"
+#include <string>
+#include <sstream>
+
+enum class Months{
+    January,
+    February,
+    March,
+    April,
+    May,
+    June,
+    July,
+    August,
+    September,
+    October,
+    November,
+    December
+};
+
 class Date{
 public:
-    explicit Date(int d = 1, int m = 1, int y = 2019);
+    Date(int d, Months m, int y) throw(std::out_of_range);
 
     const int getDay() const {
         return day;
     }
 
-    const int getMonth() const {
+    const Months getMonth() const {
         return month;
     }
 
@@ -20,10 +39,14 @@ public:
         return year;
     }
 
+    const std::string dateToString() const;
+
+    const int getMaxDay() const;
+
     bool operator==(const Date& d) const;
 private:
     int day;
-    int month;
+    Months month;
     int year;
 };
 
