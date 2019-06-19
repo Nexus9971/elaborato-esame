@@ -78,12 +78,26 @@ TEST(Account, TestinsertTransaction){
     Date d(2, Months::February, 2020);
     try {
         Account first("Mario", "De Simone", "IT3548D", d, 10);
-        Account second("Napoleone", "Bonaparte", "IT3548D", d, 5);
-        Transaction t(first, second, "IT3548D", d, 4);
+        Account second("Napoleone", "Bonaparte", "IT3548E", d, 5);
+        Transaction t(first, second, d, 4);
         first.insertTransaction(t);
         second.insertTransaction(t);
         ASSERT_EQ(*first.getTransactions().back(), t);
         ASSERT_EQ(*second.getTransactions().back(), t);
+    }catch(std::out_of_range& e){
+        result = false;
+    }
+    ASSERT_TRUE(result);
+    result = true;
+    try {
+        Account first("Mario", "De Simone", "IT3548D", d, 10);
+        Account second("Napoleone", "Bonaparte", "IT3548E", d, 5);
+        Account third("Federico", "Rapini", "IT3548F", d, 15);
+        Transaction u(first, second, d, 4);
+        Transaction t(first, third, d, 4);
+        second.insertTransaction(u);
+        second.insertTransaction(t);
+        ASSERT_EQ(*second.getTransactions().back(), u);
     }catch(std::out_of_range& e){
         result = false;
     }

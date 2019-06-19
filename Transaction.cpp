@@ -4,8 +4,10 @@
 
 #include "Transaction.h"
 
-Transaction::Transaction(Account& p, Account& b, const std::string& i, const Date& d, double a, const Category& c) throw(std::out_of_range) :
-                        id(i), type(c), date_transaction(std::unique_ptr<Date>(new Date(d))){
+Transaction::Transaction(Account& p, Account& b, const Date& d, double a, const Category& c) throw(std::out_of_range) :
+                        type(c), date_transaction(std::unique_ptr<Date>(new Date(d))){
+    id.first = p.getId();
+    id.second = b.getId();
     if(a > 0){
         Transaction::amount = a;
     }else{

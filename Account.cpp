@@ -24,13 +24,15 @@ void Account::removeMoney(double money) {
 }
 
 void Account::insertTransaction(Transaction& t) {
-    Account::transactions.push_back(std::unique_ptr<Transaction>(std::move(new Transaction(std::move(t)))));
-    std::ofstream fileTransaction;
-    std::string path = "../ListTransactions/" + Account::person.first +  Account::person.second + ".txt";
-    fileTransaction.open(path, std::ofstream::app);
-    std::stringstream stream;
-    stream << "Transaction with ID" << t.getId() << " from " << t.getPayer() << " to " << t.getBeneficiary() << " of " << t.getAmount()
-                                << "€ " << "in " << t.getDateTransaction().getDay() << "/" << t.getDateTransaction().dateToString() << "\n";
-    fileTransaction << stream.str();
-    fileTransaction.close();
+    if(id == t.getId().first || id == t.getId().second){
+        Account::transactions.push_back(std::unique_ptr<Transaction>(new Transaction(std::move(t))));
+        std::ofstream fileTransaction;
+        std::string path = "../ListTransactions/" + Account::person.first +  Account::person.second + ".txt";
+        fileTransaction.open(path, std::ofstream::app);
+        std::stringstream stream;
+        stream << "Transaction from "  << t.getPayer() << " (" << t.getId().first << ")" << " to " << t.getBeneficiary() << " ("
+                << t.getId().second << ")" << " of " << t.getAmount() << "€ " << "in " << t.getDateTransaction().dateToString() << "\n";
+        fileTransaction << stream.str();
+        fileTransaction.close();
+    }
 }

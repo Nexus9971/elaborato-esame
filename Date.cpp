@@ -29,14 +29,18 @@ const int Date::getMaxDay() const{
             max = 30;
             break;
         case Months::February: {
-            if ((year % 4) != 0) {
+            if ((year % 4) == 0) {
+                if ((year % 100) == 0){
+                    if ((year % 400) == 0){
+                        max = 29;
+                    }else{
+                        max = 28;
+                    }
+                }else{
+                    max = 29;
+                }
+            }else{
                 max = 28;
-            } else if ((year % 100) != 4) {
-                max = 29;
-            } else if ((year % 400) != 0) {
-                max = 28;
-            } else {
-                max = 29;
             }
             break;
         }

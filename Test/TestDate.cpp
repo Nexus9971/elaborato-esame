@@ -36,6 +36,13 @@ TEST(Date, ConstructorWrongParameters){
         result = false;
     }
     ASSERT_FALSE(result);
+    result = true;
+    try {
+        Date d(29, Months::February, 1800);
+    }catch(std::out_of_range& e){
+        result = false;
+    }
+    ASSERT_FALSE(result);
 }
 
 TEST(Date, TestEqualityOperator){

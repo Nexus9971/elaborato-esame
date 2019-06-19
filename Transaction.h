@@ -25,7 +25,7 @@ enum class Category{
 
 class Transaction{
 public:
-    Transaction(Account& p, Account& b, const std::string& i, const Date& d, double a, const Category& c = Category::other) throw(std::out_of_range);
+    Transaction(Account& p, Account& b, const Date& d, double a, const Category& c = Category::other) throw(std::out_of_range);
     const Date& getDateTransaction() const {
         return *date_transaction;
     }
@@ -48,14 +48,14 @@ public:
         return type;
     }
 
-    const std::string& getId() const {
+    const std::pair<std::string, std::string>& getId() const {
         return id;
     }
 
     bool operator==(const Transaction& t) const;
 private:
     std::unique_ptr<Date> date_transaction;
-    std::string id;
+    std::pair<std::string, std::string> id;
     double amount;
     std::pair<std::string, std::string> payer;
     std::pair<std::string, std::string> beneficiary;
