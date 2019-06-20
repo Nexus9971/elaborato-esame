@@ -41,13 +41,13 @@ public:
 
     const std::string dateToString() const;
 
-    const int getMaxDay() const;
-
     bool operator==(const Date& d) const;
 private:
     int day;
     Months month;
     int year;
+
+    const int getMaxDay() const;
 };
 
 #endif //PROGETTOPROGRAMMAZIONE_DATE_H
