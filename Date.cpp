@@ -54,7 +54,7 @@ const int Date::getMaxDay() const{
 
 bool Date::operator==(const Date &d) const{
     bool result = false;
-    if(Date::day == d.getDay() && Date::month == d.getMonth() && Date::year == d.getYear()){
+    if(day == d.day && month == d.month && year == d.year){
         result = true;
     }
     return result;

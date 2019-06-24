@@ -39,8 +39,8 @@ public:
         return transactions;
     }
 
-    void addMoney(double money);
-    void removeMoney(double money);
+    void addMoney(double m);
+    void removeMoney(double m);
     void insertTransaction(Transaction& t);
 private:
     std::pair<std::string, std::string> person;
